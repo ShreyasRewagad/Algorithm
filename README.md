@@ -39,14 +39,7 @@ Default: Change in centroid position.
 falls, convergence is achieved. *Default* Threshold = 1
   * **Iteration**: Optional parameter, a limit beyond which the algorithm halts irrespective of the convergence/stopping criteria. *Default* Iteration = 50.
   * **KmPP**: Optional parameter, Activates k-means++ algorithm for centroid initialization. *Default* KmPP = FALSE.
-  * **Normalize**: Optional parameter, whether to normalize or standardize the data provided in dt. Normalizing the data is necessary as this would negates the effect that the different scale of values that
-each dimension/feature holds. The way I have normalized the values is:
-  \[X_{n*q} \leftarrow \frac{x_{n*q}-\bar{x_q}}{\sigma_q}\]  
-  where, $x_{n*q}$ cell value at a certain row $n$ and column $q$ in the data.  
-  $\bar{x_q}$ is the mean of all the values for column $q$.  
-  $\sigma_q$ is the standard deviation of column $q$.  
-  $X_{n*q}$ is the new value that is substitute in-place of $x_{n*q}$  
-  *Default* Normalize = FALSE
+  * **Normalize**: Optional parameter, whether to normalize or standardize the data provided in dt. *Default* Normalize = FALSE
 
 ### Output
 The _kMeans_ function returns a list:  
@@ -101,14 +94,7 @@ Of all the above methods, introducing a small error($10^{-5}$) is the best. As t
     
   * **Bound**: Optional parameter, a limit beyond which the algorithm halts irrespective of the convergence/stopping criteria. _Default_:$Bound = 50$.
     
-  * **Normalize**: Optional parameter, whether to normalize or standardize the data provided in dt. Normalizing the data is necessary as this would negates the effect that the different scale of values that
-each dimension/feature holds. The way I have normalized the values is:
-  \[X_{n*q} \leftarrow \frac{x_{n*q}-\bar{x_q}}{\sigma_q}\]  
-  where, $x_{n*q}$ cell value at a certain row $n$ and column $q$ in the data.  
-  $\bar{x_q}$ is the mean of all the values for column $q$.  
-  $\sigma_q$ is the standard deviation of column $q$.  
-  $X_{n*q}$ is the new value that is substitute in-place of $x_{n*q}$  
-  *Default* Normalize = FALSE
+  * **Normalize**: Optional parameter, whether to normalize or standardize the data provided in data. *Default* Normalize = FALSE
     
 ### Output
 The _EM.Clust_ function returns a list as output. The list consists of 2 elements: 
