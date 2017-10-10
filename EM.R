@@ -3,7 +3,7 @@ rm(list=ls(all=TRUE))
 require(ggplot2)
 require(data.table)
 
-EM.Clust <- function(data, Bound, Threshold, K, Init.MU){
+EM.Clust <- function(data, Bound, Threshold, K, Normalize){
   ## Initializing Default values
   if(missing(Bound)){
     Bound=50
@@ -17,15 +17,19 @@ EM.Clust <- function(data, Bound, Threshold, K, Init.MU){
     K=4
     message('# Clusters set to ',K)
   }
-  if(missing(Init.MU)){
-    Init.MU <- sample(nrow(data), K)
+  if(missing(Normalize)){
+    Normalize = FALSE
+  }
+  
+  # Nromalizing the data
+  if(Normalize==TRUE){
+    demean <- sweep(data,2,colMeans(data))
+    data <- sweep(demean,MARGIN = 2,FUN = '/',apply(data, 2, sd))
   }
   
   
   #### Random Initialization ####
-  if(!is.null(dim(Init.MU))){ MU <- data.matrix(Init.MU)}
-  else{ MU <- data[Init.MU,]}
-  
+  MU <- data[sample(nrow(data), K),]
   SIGMA <- replicate(K,diag(ncol(data)),simplify = FALSE)
   Pr <- replicate(K,1/K)
   W <- matrix(0, nrow = nrow(data), ncol = K)
@@ -78,7 +82,7 @@ EM.Clust <- function(data, Bound, Threshold, K, Init.MU){
     
     #### Checking exit condition ####
     Check <- sqrt(sum(colSums(apply(NEW.MU - MU, c(1,2), function(x) x^2))))
-    # message(Iteration," : ",Check)
+    message(Iteration," : ",Check)
     if(Check <= Threshold | Iteration > Bound){
       ## Check Collaspe ##
       W.dt <- data.table::data.table(W)
