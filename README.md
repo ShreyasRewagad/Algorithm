@@ -1,12 +1,9 @@
 # Algorithm
-***
 Contains the algorith implementation, a list of protocols followed for successful implementation and sample input and out for usage purpose.
  
 ## K-Means
-***
 
 ### Protocols/Strategy followed:
-***
 
 #### Initializing centroids
 Centroids are assigned randomly. Choosing K centroids from the given data points.\\
@@ -32,7 +29,6 @@ The implementation is such that it gives the user the preference to chose from 2
 The threshold specified much be stated as per the stopping criteria. A bound on the iterations can also be set, this is vital in circumstances when the stopping parameter never comes below the threshold.
 
 ### Input/Parameters
-***
   * **dt**: The data, this is a compulsory parameter.
   * **K**: Number of clusters. Optional parameter, *Default* K = 2.
   * **Stop**: The stopping/convergence criteria. Optional Parameter,
@@ -54,7 +50,6 @@ each dimension/feature holds. The way I have normalized the values is:
   *Default* Normalize = FALSE
 
 ### Output
-***
 The kMeans function returns a list:  
   1. Cluster Labels  
   2. \# Iterations required for convergence.  
