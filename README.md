@@ -30,16 +30,15 @@ The threshold specified much be stated as per the stopping criteria. A bound on 
 
 ### Input/Parameters
   * **dt**: The data, this is a compulsory parameter.
-  * **K**: Number of clusters. Optional parameter, *Default* K = 2.
+  * **K**: Number of clusters. Optional parameter, *Default: K = 2*.
   * **Stop**: The stopping/convergence criteria. Optional Parameter,
-    - *Default* Change in centroid position or 
+    - *Default: Change in centroid position* or 
     - SSE.
-Default: Change in centroid position.
   * **Threshold**: Optional parameter, a limit below which if the value of the stopping criteria attribute
-falls, convergence is achieved. *Default* Threshold = 1
-  * **Iteration**: Optional parameter, a limit beyond which the algorithm halts irrespective of the convergence/stopping criteria. *Default* Iteration = 50.
-  * **KmPP**: Optional parameter, Activates k-means++ algorithm for centroid initialization. *Default* KmPP = FALSE.
-  * **Normalize**: Optional parameter, whether to normalize or standardize the data provided in dt. *Default* Normalize = FALSE
+falls, convergence is achieved. *Default: Threshold = 1*
+  * **Iteration**: Optional parameter, a limit beyond which the algorithm halts irrespective of the convergence/stopping criteria. *Default: Iteration = 50*.
+  * **KmPP**: Optional parameter, Activates k-means++ algorithm for centroid initialization. *Default: KmPP = FALSE*.
+  * **Normalize**: Optional parameter, whether to normalize or standardize the data provided in dt. *Default: Normalize = FALSE*.
 
 ### Output
 The _kMeans_ function returns a list:  
@@ -88,13 +87,13 @@ Of all the above methods, introducing a small error(10^-5) is the best. As the e
 ### Input/Parameters
   * **data**: The data, this is a compulsory parameter. Expects a data to be passed as a _data.matrix_.
     
-  * **K**: Number of clusters. Optional parameter, _Default_:K=2.
+  * **K**: Number of clusters. Optional parameter, *Default:K=2*.
     
-  * **Threshold**: Optional parameter, a limit below which if the value of the stopping criteria attribute falls, convergence is achieved. _Default_: Threshold = 10^{-10}.
+  * **Threshold**: Optional parameter, a limit below which if the value of the stopping criteria attribute falls, convergence is achieved. *Default: Threshold = 10^{-10}*.
     
-  * **Bound**: Optional parameter, a limit beyond which the algorithm halts irrespective of the convergence/stopping criteria. _Default_:Bound = 50.
+  * **Bound**: Optional parameter, a limit beyond which the algorithm halts irrespective of the convergence/stopping criteria. *Default:Bound = 50*.
     
-  * **Normalize**: Optional parameter, whether to normalize or standardize the data provided in data. *Default* Normalize = FALSE
+  * **Normalize**: Optional parameter, whether to normalize or standardize the data provided in data. *Default: Normalize = FALSE*.
     
 ### Output
 The _EM.Clust_ function returns a list as output. The list consists of 2 elements: 
