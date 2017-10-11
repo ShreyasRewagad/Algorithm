@@ -45,7 +45,7 @@ falls, convergence is achieved. *Default* Threshold = 1
 The _kMeans_ function returns a list:  
   1. Cluster Labels  
   2. \# Iterations required for convergence.  
-  3. SSE $\leftarrow$ only returned when ```Stop = SSE```  
+  3. SSE, only returned when ```Stop = SSE```  
 
 ### Usage
 ```
@@ -68,31 +68,31 @@ SSE <- unlist(Result[3])
 
 #### Initialization
   - Initializing each Gaussian: Randomly initialize the means for every Gaussian by choosing K data-points from the total data-points without replacement.  
-  - The initial covariance matrix(SIGMA): Assigned as a identity matrix of the order $d x d$, where $d$ are the number of columns in the data-matrix.
+  - The initial covariance matrix(SIGMA): Assigned as a identity matrix of the order _d x d_, where _d_ are the number of columns in the data-matrix.
   - Prior probabilities are taken as equal, meaning that the data-point has equal probability of appearing/associating with each cluster/Gaussian. 
 
 #### Deciding ties
   If tie occurs, i.e. a data-point exhibits equal probability of belonging to more than one Gaussian, then the Gaussian which appears first chronologically gets that data-point. 
 
 #### Stopping criteria
-  Convergence is said to have occurred if $\sum_{i=1}^{K}||\mu_t - \mu_{t-1}|| \leq \epsilon$. $\epsilon$ is taken to be or the order $10^{-10}$. Now, there are situations when this criteria will not be met, in which case a bound on the iterate is issued, the value of which is kept to 25 iterations.
+  Convergence is said to have occurred if ![equation](https://latex.codecogs.com/gif.latex?%24%5Csum_%7Bi%3D1%7D%5E%7BK%7D%7C%7C%5Cmu_t%20-%20%5Cmu_%7Bt-1%7D%7C%7C%20%5Cleq%20%5Cepsilon%24.%20%24%5Cepsilon%24) is taken to be or the order 10^{-10}. Now, there are situations when this criteria will not be met, in which case a bound on the iterate is issued, the value of which is kept to 25 iterations.
 
 #### Dealing with Singular matrix
   Singular matrix is encountered if the determinant of matrix results in 0. I have explored 3 method of getting around this situation. Discussing them below:  
-  + Consider convergence in the weights(probabilities) of the $W_{i-1}$ iteration, as the $W_{i}$ would be 0, due to results in the singular matrix sigma. By doing this, convergence is not achieved.  
+  + Consider convergence in the weights(probabilities) of the W(i-1) iteration, as the W(i) would be 0, due to results in the singular matrix sigma. By doing this, convergence is not achieved.  
   + Neglect the run and have a fresh initialization done. Perform this until we get to convergence. This method ensures that the EM algorithm leads to convergence but, we end up initializing from a set of cluster(Gaussian) means that remain relatively consistent over the numerous run of the EM algorithm. Any other initialization would obviously result in singular matrix, thus, redoing the entire process.  
   + Perform pseudo inverse: This helps deal with few cases. We need to think of a matrix to substitute with Sigma to get its determinant. I decided to substitute it with pseudo inverse matrix. This might not be the best solution to this as this is a random thought that came in my mind.  
-  + Introduce a small error($10^{-5}$) if the sigma is singular.  
-Of all the above methods, introducing a small error($10^{-5}$) is the best. As the error appears to have minimized.
+  + Introduce a small error(10^-5) if the sigma is singular.  
+Of all the above methods, introducing a small error(10^-5) is the best. As the error appears to have minimized.
 
 ### Input/Parameters
   * **data**: The data, this is a compulsory parameter. Expects a data to be passed as a _data.matrix_.
     
-  * **K**: Number of clusters. Optional parameter, _Default_:$K=2$.
+  * **K**: Number of clusters. Optional parameter, _Default_:K=2.
     
-  * **Threshold**: Optional parameter, a limit below which if the value of the stopping criteria attribute falls, convergence is achieved. _Default_: $Threshold = 10^{-10}$.
+  * **Threshold**: Optional parameter, a limit below which if the value of the stopping criteria attribute falls, convergence is achieved. _Default_: Threshold = 10^{-10}.
     
-  * **Bound**: Optional parameter, a limit beyond which the algorithm halts irrespective of the convergence/stopping criteria. _Default_:$Bound = 50$.
+  * **Bound**: Optional parameter, a limit beyond which the algorithm halts irrespective of the convergence/stopping criteria. _Default_:Bound = 50.
     
   * **Normalize**: Optional parameter, whether to normalize or standardize the data provided in data. *Default* Normalize = FALSE
     
